@@ -1,0 +1,108 @@
+<section class="panel">
+  <header class="encabezado">
+    <p>Administración</p>
+    <h1>Panel de productos</h1>
+    <span>Consulta y administra los productos registrados.</span>
+  </header>
+
+  <div class="tabla-contenedor">
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Imagen</th>
+          <th>Título</th>
+          <th>Categoría</th>
+          <th>Descripción</th>
+          <th>Precio</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        @for (producto of productos(); track producto.id) {
+          <tr>
+            <td class="id">{{ producto.id }}</td>
+
+            <td>
+              <img
+                class="imagen-producto"
+                [src]="producto.image"
+                [alt]="producto.title"
+              >
+            </td>
+
+            <td class="titulo">{{ producto.title }}</td>
+
+            <td>
+              <span class="categoria">
+                {{ producto.category }}
+              </span>
+            </td>
+
+            <td class="descripcion">
+              {{ producto.description }}
+            </td>
+
+            <td class="precio">
+              ${{ producto.price }}
+            </td>
+
+            <td>
+              <div class="acciones">
+                <button class="boton borrar" type="button">
+                  Borrar
+                </button>
+
+                <button class="boton actualizar" type="button">
+                  Actualizar
+                </button>
+              </div>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</section>
+<!-- CREATE y UPDATE: formulario -->
+    <div class="col-lg-4">
+      <h2>{{ editingId() === null ? 'Nuevo producto' : 'Editar producto #' + editingId() }}</h2>
+
+
+      <form (ngSubmit)="save()">
+        <label for="title">Título</label>
+        <input id="title" name="title" class="form-control mb-3" [(ngModel)]="form.title" required />
+
+
+        <label for="price">Precio</label>
+        <input id="price" name="price" type="number" min="0" step="0.01" class="form-control mb-3"
+          [(ngModel)]="form.price" required />
+
+
+        <label for="category">Categoría</label>
+        <select id="category" name="category" class="form-select mb-3" [(ngModel)]="form.category" required>
+          <option value="">Selecciona una categoría</option>
+          @for (category of categories(); track category) {
+            <option [value]="category">{{ category }}</option>
+          }
+        </select>
+
+
+        <label for="image">URL de la imagen</label>
+        <input id="image" name="image" type="url" class="form-control mb-3" [(ngModel)]="form.image" required />
+
+
+        <label for="description">Descripción</label>
+        <textarea id="description" name="description" rows="3" class="form-control mb-3"
+          [(ngModel)]="form.description"></textarea>
+
+
+        <button type="submit" class="btn btn-primary w-100">Guardar</button>
+
+
+        @if (editingId() !== null) {
+          <button type="button" class="btn btn-outline-secondary w-100 mt-2" (click)="cancel()">Cancelar</button>
+        }
+      </form>
+    </div>

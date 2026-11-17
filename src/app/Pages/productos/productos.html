@@ -1,0 +1,76 @@
+<section class="catalogo">
+
+  <div class="encabezado">
+    <h1>Nuestros productos</h1>
+    <p>Conoce los productos disponibles en nuestra tienda.</p>
+  </div>
+
+  @if (cargando()) {
+
+    <p class="mensaje">
+      Cargando productos...
+    </p>
+
+  } @else if (errorCargando()) {
+
+    <p class="mensaje">
+      Ocurrió un error al cargar los productos.
+    </p>
+
+  } @else {
+
+    <div class="contenedor-productos">
+
+      @for (item of productos(); track item.id) {
+
+        <div class="tarjeta-producto">
+
+          <div class="imagen">
+            @if (item.image) {
+              <img
+                [src]="item.image"
+                [alt]="item.title"
+              >
+            } @else {
+              <p>Imagen no disponible</p>
+            }
+          </div>
+
+          <div class="detalles">
+
+            <p class="categoria">
+              {{ item.category }}
+            </p>
+
+            <h2>{{ item.title }}</h2>
+
+            <p class="descripcion">
+              {{ item.description }}
+            </p>
+
+            <p class="calificacion">
+              ★ {{ item.rating.rate }} / 5
+              ({{ item.rating.count }} opiniones)
+            </p>
+
+            <p class="precio">
+              US$ {{ item.price }}
+            </p>
+
+          </div>
+
+        </div>
+
+      } @empty {
+
+        <p class="mensaje">
+          No se encontraron productos en la API.
+        </p>
+
+      }
+
+    </div>
+
+  }
+
+</section>

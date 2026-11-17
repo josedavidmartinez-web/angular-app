@@ -1,0 +1,102 @@
+
+.panel {
+  padding: 20px;
+}
+
+.encabezado {
+  margin-bottom: 20px;
+}
+
+.encabezado p {
+  color: #555;
+}
+
+.encabezado h1 {
+  font-size: 25px;
+  color: #333;
+}
+
+.encabezado span {
+  color: #666;
+}
+
+.tabla-contenedor {
+  width: 100%;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+}
+
+th {
+  background: #ddd;
+  color: #333;
+  padding: 12px;
+  border: 1px solid #999;
+  text-align: center;
+}
+
+td {
+  padding: 10px;
+  border: 1px solid #999;
+  text-align: center;
+  color: #333;
+}
+
+.imagen-producto {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+}
+
+.titulo {
+  font-weight: bold;
+}
+
+.descripcion {
+  max-width: 250px;
+}
+
+.precio {
+  font-weight: bold;
+}
+
+.categoria {
+  background: #eee;
+  padding: 5px;
+  border-radius: 3px;
+}
+
+.acciones {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+
+.boton {
+  padding: 7px 10px;
+  border: 1px solid #999;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.borrar {
+  background: #f5caca;
+}
+
+.actualizar {
+  background: #cbdcf5;
+}
+
+.boton:hover {
+  opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+  table {
+    min-width: 900px;
+  }
+}
